@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button } from './common'
-import { emailChanged, passwordChanged, loginPressed } from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 
 class LoginForm extends React.Component {
 
     onPress = () => {
-        this.props.loginPressed()
+        const { email, password } = this.props
+        this.props.loginUser({ email, password })
     }
 
     onEmailChange = text => {
@@ -19,7 +20,7 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        console.log(this.props.password)
+
         return (
             <Card>
                 <CardSection>
@@ -63,6 +64,6 @@ export default connect(
     {
         emailChanged,
         passwordChanged,
-        loginPressed
+        loginUser
     }
 )(LoginForm)
