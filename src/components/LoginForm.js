@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { Card, CardSection, Input, Button, Spinner } from './common'
+import { Card, CardSection, Input, Button, Spinner, Message } from './common'
 import { inputTextChanged, emailChanged, passwordChanged, loginUser } from '../actions'
 
 class LoginForm extends React.Component {
@@ -59,20 +59,12 @@ class LoginForm extends React.Component {
                         {this.renderButton()}
                     </CardSection>
                 </Card>
-                {this.renderMsg()}
+                <Message
+                    msg={this.props.msg}
+                    msgColor={this.props.msgColor}
+                />
             </View>
         )
-    }
-
-    styles = {
-        errorTextStyle: () => {
-            return {
-                fontSize: 20,
-                alignSelf: 'center',
-                paddingTop: 20,
-                color: this.props.msgColor
-            }
-        }
     }
 }
 

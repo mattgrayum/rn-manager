@@ -49,7 +49,8 @@ export default (state = INITIAL_STATE, action) => {
         case LOADING:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                msg: ''
             }
         default:
             return state
