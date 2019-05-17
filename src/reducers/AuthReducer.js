@@ -1,4 +1,5 @@
 import {
+    INPUT_TEXT_CHANGED,
     EMAIL_CHANGED,
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
     password: '',
     loading: false,
     error: null,
+    firebaseError: null,
     msg: '',
     msgColor: '',
     user: null
@@ -19,10 +21,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
-        case EMAIL_CHANGED:
-            return { ...state, email: action.payload }
-        case PASSWORD_CHANGED:
-            return { ...state, password: action.payload }
+        case INPUT_TEXT_CHANGED:
+            const { text, inputName } = action.payload
+            return { ...state, [inputName]: text }
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
@@ -37,10 +38,11 @@ export default (state = INITIAL_STATE, action) => {
         case LOGIN_USER_FAIL:
             return {
                 ...state,
-                email: '',
+                email: action.payload.email,
                 password: '',
                 loading: false,
                 error: false,
+                firebaseError: action.payload.error,
                 msg: 'Authentication Failed',
                 msgColor: 'red'
             }

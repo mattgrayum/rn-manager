@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import {
+    INPUT_TEXT_CHANGED,
     EMAIL_CHANGED,
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
@@ -7,17 +8,10 @@ import {
     LOADING
 } from './types'
 
-export const emailChanged = text => {
+export const inputTextChanged = (text, inputName) => {
     return {
-        type: EMAIL_CHANGED,
-        payload: text
-    }
-}
-
-export const passwordChanged = text => {
-    return {
-        type: PASSWORD_CHANGED,
-        payload: text
+        type: INPUT_TEXT_CHANGED,
+        payload: { text, inputName }
     }
 }
 
@@ -32,7 +26,7 @@ export const loginUser = ({ email, password }) => {
             .catch(() => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     .then(user => loginUserSuccess(dispatch, user))
-                    .catch(loginUserFail(dispatch))
+                    .catch(error => loginUserFail(dispatch, error, email))
             })
     }
 }
@@ -41,8 +35,11 @@ const loginUserSuccess = (dispatch, user) => {
     dispatch({ type: LOGIN_USER_SUCCESS, payload: user })
 }
 
-const loginUserFail = dispatch => {
-    dispatch({ type: LOGIN_USER_FAIL })
+const loginUserFail = (dispatch, error, email) => {
+    dispatch({
+        type: LOGIN_USER_FAIL,
+        payload: { error, email }
+    })
 }
 
 const showSpinner = dispatch => {

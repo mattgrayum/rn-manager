@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Spinner } from './common'
-import { emailChanged, passwordChanged, loginUser } from '../actions'
+import { inputTextChanged, emailChanged, passwordChanged, loginUser } from '../actions'
 
 class LoginForm extends React.Component {
 
@@ -11,12 +11,8 @@ class LoginForm extends React.Component {
         this.props.loginUser({ email, password })
     }
 
-    onEmailChange = text => {
-        this.props.emailChanged(text)
-    }
-
-    onPasswordChange = text => {
-        this.props.passwordChanged(text)
+    onInputTextChanged = (inputName, text) => {
+        this.props.inputTextChanged(text, inputName)
     }
 
     renderButton = () => {
@@ -35,13 +31,14 @@ class LoginForm extends React.Component {
     }
 
     render() {
-
         return (
             <View>
                 <Card>
                     <CardSection>
                         <Input
-                            onChangeText={this.onEmailChange.bind(this)}
+                            onChangeText=
+                            {this.onInputTextChanged.
+                                bind(this, 'email')}
                             label="Email"
                             placeholder="email@gmail.com"
                             value={this.props.email}
@@ -49,7 +46,9 @@ class LoginForm extends React.Component {
                     </CardSection>
                     <CardSection>
                         <Input
-                            onChangeText={this.onPasswordChange.bind(this)}
+                            onChangeText=
+                            {this.onInputTextChanged.
+                                bind(this, 'password')}
                             secureTextEntry
                             label="Password"
                             placeholder="Secure password"
@@ -77,10 +76,8 @@ class LoginForm extends React.Component {
     }
 }
 
-
-
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
+    //console.log(state)
     return {
         email: state.auth.email,
         password: state.auth.password,
@@ -94,6 +91,7 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
     mapStateToProps,
     {
+        inputTextChanged,
         emailChanged,
         passwordChanged,
         loginUser
