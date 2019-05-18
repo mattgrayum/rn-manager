@@ -1,12 +1,10 @@
 import React from 'react'
-import { Text, View } from 'react-native'
 import { Provider } from 'react-redux'
 import firebase from 'firebase'
 import { createStore, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import reducers from './src/reducers'
-import LoginForm from './src/components/LoginForm'
-import { Header } from './src/components/common'
+import Router from './src/Router'
 
 class App extends React.Component {
 
@@ -35,8 +33,7 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <Header headerText="Manager App" />
-        <LoginForm />
+        <Router />
       </Provider>
     );
   }
