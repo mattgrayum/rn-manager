@@ -1,5 +1,5 @@
 import {
-    INPUT_TEXT_CHANGED,
+    INPUT_CHANGED,
     EMPLOYEE_ADDED
 } from '../actions/types'
 
@@ -11,9 +11,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case INPUT_TEXT_CHANGED:
-            const { text, inputName } = action.payload
-            return { ...state, [inputName]: text }
+        case INPUT_CHANGED:
+            const { prop, value } = action.payload
+            return { ...state, [prop]: value }
         case EMPLOYEE_ADDED:
             const { name, phone, shift } = action.payload
             return { ...state, name, phone, shift }

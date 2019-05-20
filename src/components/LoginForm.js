@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Spinner, Message } from './common'
-import { inputTextChanged, loginUser } from '../actions'
+import { inputChanged, loginUser } from '../actions'
 
 class LoginForm extends React.Component {
 
@@ -11,8 +11,8 @@ class LoginForm extends React.Component {
         loginUser({ email, password })
     }
 
-    onInputTextChanged = (inputName, text) => {
-        this.props.inputTextChanged(text, inputName)
+    onInputChanged = (inputName, value) => {
+        this.props.inputChanged({ prop: inputName, value })
     }
 
     renderButton = () => {
@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
                     <CardSection>
                         <Input
                             onChangeText={
-                                this.onInputTextChanged.bind(this, 'email')
+                                this.onInputChanged.bind(this, 'email')
                             }
                             label="Email"
                             placeholder="email@gmail.com"
@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
                     <CardSection>
                         <Input
                             onChangeText={
-                                this.onInputTextChanged.bind(this, 'password')
+                                this.onInputChanged.bind(this, 'password')
                             }
                             secureTextEntry
                             label="Password"
@@ -75,7 +75,7 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     {
-        inputTextChanged,
+        inputChanged,
         loginUser
     }
 )(LoginForm)

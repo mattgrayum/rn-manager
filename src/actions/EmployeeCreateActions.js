@@ -1,8 +1,7 @@
 import { EMPLOYEE_ADDED } from './types'
 
-export const addEmployee = (name, phone) => {
+export const addEmployee = (name, phone, shift) => {
 
-    const shift = name === 'matt' ? 'day' : 'night'
     return {
         type: EMPLOYEE_ADDED,
         payload: { name, phone, shift }

@@ -1,5 +1,5 @@
 import {
-    INPUT_TEXT_CHANGED,
+    INPUT_CHANGED,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
     LOADING
@@ -19,9 +19,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
-        case INPUT_TEXT_CHANGED:
-            const { text, inputName } = action.payload
-            return { ...state, [inputName]: text }
+        case INPUT_CHANGED:
+            const { prop, value } = action.payload
+            return { ...state, [prop]: value }
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,

@@ -1,6 +1,4 @@
-export const INPUT_TEXT_CHANGED = 'input_text_changed'
-export const EMAIL_CHANGED = 'email_changed'
-export const PASSWORD_CHANGED = 'password_changed'
+export const INPUT_CHANGED = 'input_changed'
 export const LOGIN_USER_SUCCESS = 'login_user_success'
 export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOADING = 'loading'

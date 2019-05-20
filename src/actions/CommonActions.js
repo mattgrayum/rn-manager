@@ -1,8 +1,8 @@
-import { INPUT_TEXT_CHANGED } from './types'
+import { INPUT_CHANGED } from './types'
 
-export const inputTextChanged = (text, inputName) => {
+export const inputChanged = ({ prop, value }) => {
     return {
-        type: INPUT_TEXT_CHANGED,
-        payload: { text, inputName }
+        type: INPUT_CHANGED,
+        payload: { prop, value }
     }
 }
