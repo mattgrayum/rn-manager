@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
                             }
                             label="Email"
                             placeholder="email@gmail.com"
-                            value="b@email.com"
+                            value={this.props.email}
                         />
                     </CardSection>
                     <CardSection>
@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
                             secureTextEntry
                             label="Password"
                             placeholder="Secure password"
-                            value="pas"
+                            value={this.props.password}
                         />
                     </CardSection>
                     <CardSection>
