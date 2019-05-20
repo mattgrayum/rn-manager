@@ -6,7 +6,8 @@ import {
 const INITIAL_STATE = {
     name: '',
     phone: '',
-    shift: ''
+    shift: '',
+    employees: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,7 +17,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, [prop]: value }
         case EMPLOYEE_ADDED:
             const { name, phone, shift } = action.payload
-            return { ...state, name, phone, shift }
+            return { ...state, employees: [...employees, { name, phone, shift }] }
         default:
             return state
     }

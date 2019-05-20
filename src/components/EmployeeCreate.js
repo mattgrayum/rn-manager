@@ -8,7 +8,7 @@ class EmployeeCreate extends React.Component {
 
     onPress = () => {
         const { name, phone, shift } = this.props
-        this.props.addEmployee(name, phone, shift)
+        this.props.addEmployee(name, phone, shift || 'Monday')
     }
 
     onInputChange = (inputName, value) => {
@@ -16,7 +16,11 @@ class EmployeeCreate extends React.Component {
     }
 
     render() {
-
+        if (this.props.employees) {
+            this.props.employees.forEach(item => {
+                console.log(item)
+            });
+        }
         return (
             <Card>
 
@@ -80,7 +84,8 @@ const mapStateToProps = (state) => {
     return {
         name: state.employeeCreate.name,
         phone: state.employeeCreate.phone,
-        shift: state.employeeCreate.shift
+        shift: state.employeeCreate.shift,
+        employees: state.employeeCreate.employees
     }
 }
 
