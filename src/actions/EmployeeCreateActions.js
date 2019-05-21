@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import 'firebase/firestore'
+import FireStore from '../FireStore'
 import { EMPLOYEE_ADDED } from './types'
 
 

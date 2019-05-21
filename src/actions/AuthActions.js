@@ -1,6 +1,5 @@
 import { Actions } from 'react-native-router-flux'
-import firebase from 'firebase'
-import 'firebase/firestore'
+import FireStore from '../FireStore'
 import {
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
@@ -13,13 +12,11 @@ export const loginUser = ({ email, password }) => {
 
         showSpinner(dispatch)
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        FireStore().signIn(email, password)
             .then(user => loginUserSuccess(dispatch, user))
             .catch(() => {
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(user => {
-                        loginUserSuccess(dispatch, user)
-                    })
+                FireStore().createUser(email, password)
+                    .then(user => loginUserSuccess(dispatch, user))
                     .catch(error => loginUserFail(dispatch, error, email))
             })
     }
